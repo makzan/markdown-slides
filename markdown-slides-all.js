@@ -52,17 +52,18 @@ function getUrlVars()
 // Markdown Slides Player
 
 var queryParams = getUrlVars();
-var md_file = "sample";
-if (queryParams["md"] != null && queryParams["md"] != "") {
+var md_file = "index.md";
+if (queryParams["md"] != null && queryParams["md"] != "" && queryParams["md"] != "index") {
   md_file = queryParams["md"];
 }
 
-$.get("/slides/" + md_file, function(data){
+$.get(md_file, function(data){
   $("textarea.raw-markdown").text(data);
   setupSlides();
 });
 
 function setupSlides() {
+
   $("body").append(`<main class="slides reading-mode">
     <div class="swiper-wrapper"></div>
     <div class="swiper-scrollbar"></div>
